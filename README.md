@@ -486,19 +486,25 @@ You should see the welcome message and Swagger documentation!
 
 ## 📚 API Documentation
 
-### Interactive Documentation
+### User Guide & Documentation
 
-Visit **http://localhost:5000/api-docs** for interactive Swagger documentation where you can:
+#### Local Development
+Once you have started the application locally (`npm run dev`), you can access the interactive documentation:
+
+- **Local API Docs**: [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
+- **Local API Root**: [http://localhost:5000/api](http://localhost:5000/api)
+
+#### Live Demo
+<!-- Replace the link below with your deployed Render/Vercel URL -->
+- **Live API Docs**: [https://vortexboard-api.onrender.com/api-docs](#) 🚀 _(Coming Soon)_
+
+### Interactive Features
+The Swagger UI allows you to:
 - View all endpoints
 - Test API calls directly
 - See request/response schemas
 - Authenticate with JWT tokens
 
-### Base URL
-
-```
-http://localhost:5000/api
-```
 
 <details>
 <summary>Click to view API Endpoints</summary>
