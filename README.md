@@ -139,7 +139,7 @@ This project is designed to showcase professional backend development skills for
 
 ### High-Level Architecture
 
-![VortexBoard Architecture](vortexboard_architecture_diagram_1767809213806.png)
+![VortexBoard Architecture](assets/vortexboard_architecture.png)
 
 The system follows a **layered architecture** pattern:
 
@@ -152,7 +152,7 @@ The system follows a **layered architecture** pattern:
 
 ### Request Flow
 
-![Request Flow](vortexboard_request_flow_1767809232009.png)
+![Request Flow](assets/vortexboard_flow.png)
 
 **Authentication & Authorization Flow:**
 
@@ -180,9 +180,12 @@ The system follows a **layered architecture** pattern:
 
 ### Entity Relationship Diagram (ERD)
 
-![VortexBoard ERD](vortexboard_erd_diagram_1767809191972.png)
+![VortexBoard ERD](assets/vortexboard_erd.png)
 
 ### Database Schema
+
+<details>
+<summary>Click to view Data Models</summary>
 
 #### **User Collection**
 ```javascript
@@ -298,6 +301,7 @@ The system follows a **layered architecture** pattern:
   createdAt: Date
 }
 ```
+</details>
 
 ### Database Indexes
 
@@ -314,6 +318,9 @@ The system follows a **layered architecture** pattern:
 ---
 
 ## 🛠️ Technology Stack
+
+<details>
+<summary>Click to view Tech Stack Details</summary>
 
 ### Backend Framework
 - **Node.js** (v18+) - JavaScript runtime
@@ -350,9 +357,14 @@ The system follows a **layered architecture** pattern:
 - **ESLint** - Code linting (optional)
 - **Prettier** - Code formatting (optional)
 
+</details>
+
 ---
 
 ## 🚀 Installation & Setup
+
+<details>
+<summary>Click to view Installation Steps</summary>
 
 ### Prerequisites
 
@@ -468,6 +480,8 @@ Open your browser and visit:
 
 You should see the welcome message and Swagger documentation!
 
+</details>
+
 ---
 
 ## 📚 API Documentation
@@ -485,6 +499,9 @@ Visit **http://localhost:5000/api-docs** for interactive Swagger documentation w
 ```
 http://localhost:5000/api
 ```
+
+<details>
+<summary>Click to view API Endpoints</summary>
 
 ### Authentication
 
@@ -547,6 +564,11 @@ Authorization: Bearer <your_jwt_token>
 | PUT | `/:id/read` | Mark as read | Yes |
 | PUT | `/read-all` | Mark all as read | Yes |
 | DELETE | `/:id` | Delete notification | Yes |
+
+</details>
+
+<details>
+<summary>Click to view Example API Calls</summary>
 
 ### Example API Calls
 
@@ -640,6 +662,8 @@ curl -X GET http://localhost:5000/api/analytics/dashboard \
 }
 ```
 
+</details>
+
 ### Response Format
 
 **Success Response:**
@@ -686,9 +710,6 @@ npm test -- --coverage
 
 # Run tests in watch mode
 npm run test:watch
-
-# Run specific test file
-npm test -- tests/auth.test.js
 ```
 
 ### Test Coverage
@@ -703,47 +724,20 @@ The project includes comprehensive tests for:
 - ✅ Input validation
 - ✅ Error handling
 
-### Writing Tests
-
-Example test structure:
-
-```javascript
-describe('Auth API', () => {
-  it('should register a new user', async () => {
-    const res = await request(app)
-      .post('/api/auth/register')
-      .send({
-        name: 'Test User',
-        email: 'test@example.com',
-        password: 'password123'
-      });
-
-    expect(res.statusCode).toEqual(201);
-    expect(res.body).toHaveProperty('token');
-  });
-});
-```
-
 ---
 
 ## 🌐 Deployment
 
+<details>
+<summary>Click to view Deployment Guides</summary>
+
 ### Deploy to Render.com
 
-1. **Create Account** at [Render.com](https://render.com)
-2. **New Web Service** → Connect GitHub repository
-3. **Configure**:
-   - Build Command: `npm install`
-   - Start Command: `npm start`
-4. **Environment Variables**: Add all `.env` variables
-5. **Deploy**: Automatic deployment on push
-
-### Deploy to Railway
-
-1. **Create Account** at [Railway.app](https://railway.app)
-2. **New Project** → Deploy from GitHub
-3. **Add Variables**: Configure environment variables
-4. **Deploy**: Automatic deployment
+1. **Create a new Web Service** on Render
+2. **Connect your GitHub repository**
+3. **Configure environment variables** in Render dashboard
+4. **Set build command**: `npm install`
+5. **Set start command**: `npm start`
 
 ### Deploy to Vercel
 
@@ -752,13 +746,18 @@ npm install -g vercel
 vercel
 ```
 
+### Deploy to Railway
+
+1. **Connect GitHub repository** to Railway
+2. **Add environment variables**
+3. **Deploy automatically** on push
+
 ### MongoDB Atlas Setup
 
-1. Create free cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create database user
-3. Whitelist IP: `0.0.0.0/0` (all IPs) or specific IPs
-4. Get connection string
-5. Update `DB_URI` in environment variables
+1. Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Create a database user
+3. Whitelist your IP (or use 0.0.0.0/0 for all IPs)
+4. Get connection string and update `DB_URI` in `.env`
 
 ### Environment Variables for Production
 
@@ -771,24 +770,29 @@ EMAIL_SERVICE=sendgrid
 SENDGRID_API_KEY=<your_api_key>
 ```
 
+</details>
+
 ---
 
 ## 📁 Project Structure
 
+<details>
+<summary>Click to view Project Structure</summary>
+
 ```
 vortexboard/
 ├── config/
-│   ├── db.js                 # MongoDB connection
+│   ├── db.js                 # Database configuration
 │   └── swagger.js            # API documentation config
 ├── controllers/
 │   ├── authController.js     # Authentication logic
-│   ├── boardController.js    # Board management
-│   ├── taskController.js     # Task management
+│   ├── boardController.js    # Board management logic
+│   ├── taskController.js     # Task management logic
 │   ├── analyticsController.js # Analytics & stats
 │   └── notificationController.js # Notifications
 ├── middleware/
-│   ├── auth.js               # JWT authentication
-│   ├── validation.js         # Input validation
+│   ├── auth.js               # JWT authentication middleware
+│   └── validation.js         # Input validation middleware
 │   └── activityLogger.js     # Activity logging
 ├── models/
 │   ├── User.js               # User schema
@@ -805,25 +809,27 @@ vortexboard/
 │   ├── analyticsRoutes.js    # Analytics endpoints
 │   └── notificationRoutes.js # Notification endpoints
 ├── tests/
-│   ├── auth.test.js          # Auth tests
-│   ├── board.test.js         # Board tests
-│   └── task.test.js          # Task tests
+│   └── auth.test.js          # Test files
 ├── utils/
-│   ├── errorHandler.js       # Error handling
-│   ├── logger.js             # Winston logger
+│   ├── errorHandler.js       # Error handling utilities
+│   ├── logger.js             # Winston logger configuration
 │   └── emailService.js       # Email service
-├── .env.example              # Environment template
+├── .env.example              # Environment variables template
 ├── .gitignore                # Git ignore rules
-├── app.js                    # Express app config
+├── app.js                    # Express app configuration
 ├── server.js                 # Server entry point
-├── package.json              # Dependencies
-├── QUICKSTART.md             # Quick start guide
+├── package.json              # Dependencies and scripts
 └── README.md                 # This file
 ```
+
+</details>
 
 ---
 
 ## ⚡ Performance & Scalability
+
+<details>
+<summary>Click to view Performance Details</summary>
 
 ### Database Optimization
 
@@ -854,9 +860,14 @@ Recommended tools:
 - **MongoDB Atlas** monitoring
 - **Winston** logs to centralized logging service
 
+</details>
+
 ---
 
 ## 🔒 Security
+
+<details>
+<summary>Click to view Security Details</summary>
 
 ### Implemented Security Measures
 
@@ -894,6 +905,8 @@ Recommended tools:
    - No stack traces in production
    - Generic error messages to clients
    - Detailed logging for debugging
+
+</details>
 
 ### Security Best Practices
 
@@ -998,12 +1011,11 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Abdelrahman Ragheb**
 
-- 🌐 Portfolio: [yourportfolio.com](https://yourportfolio.com)
-- 💼 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- 🐙 GitHub: [@yourusername](https://github.com/yourusername)
-- 📧 Email: your.email@example.com
+- 💼 LinkedIn: [linkedin.com/in/abdelrahman-fathy-ragheb](https://www.linkedin.com/in/abdelrahman-fathy-ragheb/)
+- 🐙 GitHub: [@AbdelrahmanRagheb](https://github.com/AbdelrahmanRagheb)
+- 📧 Email: abdelrahman.ragheb01@gmail.com
 
 ---
 
@@ -1020,9 +1032,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📊 Project Stats
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/vortexboard?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/vortexboard?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/yourusername/vortexboard?style=social)
+![GitHub stars](https://img.shields.io/github/stars/AbdelrahmanRagheb/vortexboard?style=social)
+![GitHub forks](https://img.shields.io/github/forks/AbdelrahmanRagheb/vortexboard?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/AbdelrahmanRagheb/vortexboard?style=social)
 
 ---
 
@@ -1032,6 +1044,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **Built with ❤️ using Node.js, Express, and MongoDB**
 
-[Report Bug](https://github.com/yourusername/vortexboard/issues) • [Request Feature](https://github.com/yourusername/vortexboard/issues)
+[Report Bug](https://github.com/AbdelrahmanRagheb/vortexboard/issues) • [Request Feature](https://github.com/AbdelrahmanRagheb/vortexboard/issues)
 
 </div>
